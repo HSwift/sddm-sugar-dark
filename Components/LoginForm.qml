@@ -24,6 +24,13 @@ import SddmComponents 2.0 as SDDM
 ColumnLayout {
     id: formContainer
     SDDM.TextConstants { id: textConstants }
+    
+    Rectangle {
+        id: background
+        anchors.fill: parent
+        color: config.PanelColor
+        opacity: config.PanelOpacity
+    }
 
     Clock {
         id: clock

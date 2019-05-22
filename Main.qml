@@ -36,39 +36,28 @@ Pane{
     palette.highlight: config.ThemeColor
     palette.text: config.ThemeColor
     palette.buttonText: config.ThemeColor
-    palette.window: "#444444"
+    palette.window: "transparent"
 
     font.family: config.Font
     font.pointSize: config.FontSize !== "" ? config.FontSize : parseInt(height / 80)
     focus: true
+    
+    Image {
+        source: config.background || config.Background
+        anchors.fill: parent
+        asynchronous: true
+        cache: true
+        fillMode: config.ScaleImageCropped == "true" ? Image.PreserveAspectCrop : Image.PreserveAspectFit
+        clip: true
+        mipmap: true
+    }
 
     RowLayout {
         anchors.fill: parent
         spacing: 0
-
         LoginForm {
             Layout.minimumHeight: parent.height
             Layout.maximumWidth: parent.width / 2.5
         }
-
-        Item {
-            id: image
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Image {
-                source: config.background || config.Background
-                anchors.fill: parent
-                asynchronous: true
-                cache: true
-                fillMode: config.ScaleImageCropped == "true" ? Image.PreserveAspectCrop : Image.PreserveAspectFit
-                clip: true
-                mipmap: true
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: parent.forceActiveFocus()
-            }
-        }
     }
-
 }
